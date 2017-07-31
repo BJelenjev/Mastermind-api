@@ -6,14 +6,16 @@ const joinGame = require('../../hooks/join-game');
 
 const checkWinner = require('../../hooks/check-winner');
 
+const checkGuess = require('../../hooks/check-guess');
+
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
     create: [createGame()],
-    update: [joinGame(), checkWinner()],
-    patch: [joinGame(), checkWinner()],
+    update: [joinGame(), checkWinner(), checkGuess()],
+    patch: [joinGame(), checkWinner(), checkGuess()],
     remove: []
   },
 
