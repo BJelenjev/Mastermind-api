@@ -6,12 +6,6 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
 
-  const codeSchema = new Schema({
-    initcode: { type: [Number], required: true},
-    won: { type: Boolean, default: false},
-    loss: { type: Boolean, default: false}
-  });
-
   const playersSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'users' },
   });
@@ -22,13 +16,15 @@ module.exports = function (app) {
   });
 
   const games = new Schema({
-    code: codeSchema,
+    code: { type: [Number], required: true},
     players: [playersSchema],
     guesses: [guessesSchema],
     turn: { type: Number, default: 1 },
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },
     ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
+    won: { type: Boolean, default: false},
+    loss: { type: Boolean, default: false},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
   });
