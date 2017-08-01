@@ -9,7 +9,7 @@ module.exports = function (app) {
   const codeSchema = new Schema({
     initcode: { type: [Number], required: true},
     won: { type: Boolean, default: false},
-    los: { type: Boolean, default: false}
+    loss: { type: Boolean, default: false}
   });
 
   const playersSchema = new Schema({
