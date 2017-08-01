@@ -9,6 +9,7 @@ module.exports = function (app) {
   const codeSchema = new Schema({
     initcode: { type: [Number], required: true},
     won: { type: Boolean, default: false},
+    los: { type: Boolean, default: false}
   });
 
   const playersSchema = new Schema({
@@ -28,7 +29,6 @@ module.exports = function (app) {
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },
     ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
-
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
   });
