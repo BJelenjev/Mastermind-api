@@ -25,7 +25,7 @@ module.exports = function (app) {
     code: codeSchema,
     players: [playersSchema],
     guesses: [guessesSchema],
-    turn: { type: Number, default: 0 },
+    turn: { type: Number, default: 1 },
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },
     ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
