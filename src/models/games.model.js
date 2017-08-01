@@ -22,7 +22,7 @@ module.exports = function (app) {
   });
 
   const games = new Schema({
-    code: [codeSchema],
+    code: codeSchema,
     players: [playersSchema],
     guesses: [guessesSchema],
     turn: { type: Number, default: 0 },
