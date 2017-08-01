@@ -5,5 +5,30 @@
   "paginate": {
     "default": 10,
     "max": 50
+  },
+  "mongodb": "mongodb://localhost:27017/mastermind_api",
+  "authentication": {
+    "secret": "52ad4a3b39380b8d0df55843a3c88519c65a4f50a84991aef96bc9432302bae00462824d6d0831c09075d3efef197a886d32039e80dc45723bd758536b6e1261e4ac6d977605680c292e6cf58a3cb5016677cc735d2c515ccff17a635fd1c5477ba1232c71128e7635bbd9cc1303621b060b5d3b95a4dfe83e14bd12d4326743e4f64b4675af30b2b0b348c7d17b663f6b22d5ee4b012edc3d13f339d9f947f50526bfa06ad97db2797b247c4115daccf35f9fa968f9de22d3c322f992c967aacb531a9c18646708740e2867bbefa3d32b130b3b2a280b40c4fba9afdc9485f6c77cc614e82d2a3d3e6b3ee04a9d9d35db45ba668bb2ad4ebc50547acc18eaae",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "type": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
   }
 }
