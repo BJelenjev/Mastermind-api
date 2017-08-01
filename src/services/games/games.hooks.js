@@ -21,7 +21,7 @@ const createGame = require('../../hooks/create-game');
 
 const joinGame = require('../../hooks/join-game');
 
-const checkWinner = require('../../hooks/check-winner');
+const statusGame = require('../../hooks/status-game');
 
 const checkGuess = require('../../hooks/check-guess');
 
@@ -37,7 +37,7 @@ module.exports = {
   },
 
   after: {
-    all: [populate({ schema: ownerSchema }), checkWinner()],
+    all: [populate({ schema: ownerSchema }), statusGame()],
     find: [],
     get: [],
     create: [],
