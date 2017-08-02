@@ -7,7 +7,6 @@ const restrict = [
   restrictToAuthenticated(),
 ];
 
-
 const ownerSchema = {
   include: {
     service: 'users',
