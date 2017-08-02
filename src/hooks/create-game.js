@@ -18,7 +18,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     const { user } = hook.params;
 
     // assign the owner of the game
-    hook.data.userId = user._id,
+    hook.data.userId = user._id
     // add the owner to the players, as the first player in the game
     hook.data.players = [{
       userId: user._id
@@ -27,7 +27,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     // create a code to guess
     const initcode = select('123456'.split(''));
     hook.data.code = initcode
-      .map((initcode) => ({ initcode: initcode }));
+      .map((initcode) => Number(initcode));
 
     return Promise.resolve(hook);
   };
