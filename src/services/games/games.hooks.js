@@ -24,6 +24,7 @@ const joinGame = require('../../hooks/join-game');
 const statusGame = require('../../hooks/status-game');
 
 const checkGuess = require('../../hooks/check-guess');
+const concealCode = require('../../hooks/conceal-code');
 
 module.exports = {
   before: {
@@ -37,7 +38,7 @@ module.exports = {
   },
 
   after: {
-    all: [populate({ schema: ownerSchema }), statusGame()],
+    all: [populate({ schema: ownerSchema }), statusGame(), concealCode],
     find: [],
     get: [],
     create: [],
