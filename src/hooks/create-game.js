@@ -12,6 +12,10 @@ function select(array) {
   return code;
 }
 
+function seedColors() {
+  return ["gray"].concat("red orange yellow green blue indigo".split(" "))
+}
+
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
   return function (hook) {
 
@@ -28,7 +32,12 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     // create a code to guess
     const initcode = select('123456'.split(''));
     hook.data.code = initcode.map((initcode) => Number(initcode));
-
+    
+    // and seed colors (add a color scheme generator later).
+    // The first color (index 0) should be "gray", since our initcode values only
+    // go 1-6 we need to have 7 colors exactly
+    hook.data.colors = seedColors()
+    
     return Promise.resolve(hook);
   };
 };
