@@ -1,5 +1,5 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const { restrictToAuthenticated } = require('feathers-authentication-hooks');
+const { restrictToAuthenticated} = require('feathers-authentication-hooks');
 const { populate } = require('feathers-hooks-common');
 
 const restrict = [
@@ -27,10 +27,10 @@ const checkGuess = require('../../hooks/check-guess');
 
 module.exports = {
   before: {
-    all: [ ...restrict ],
+    all: [...restrict],
     find: [],
     get: [],
-    create: [createGame()],
+    create: [ createGame()],
     update: [joinGame(), checkGuess()],
     patch: [joinGame(), checkGuess()],
     remove: []
