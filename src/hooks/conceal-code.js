@@ -11,6 +11,5 @@ const concealGameCode = (data) => {
 
 module.exports = function(hook) {
   hook.result = concealGameCode(hook.result)
-  console.log("Data after conceal: ", hook.result)
   return hook
 }
