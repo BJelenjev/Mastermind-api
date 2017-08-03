@@ -9,12 +9,21 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     //see if hook has data guess: and that the array doesn't contain 0
     if (hook.data.guess === undefined) return Promise.resolve(hook);
     if (hook.data.guess.includes(0)) return Promise.resolve(hook);
-    //check if user is one of the players
+    // check if user is one of the players
     const { user } = hook.params;
-    return hook.app.service('games').get(hook.id)
-      .then((game) => {
+    
+    // Contrary to what you might suspect, doing this "reentry" (calling the service's "get"
+    // from within the service) implies that all the filters and hooks and whatnot are going
+    // to be applied to to what gets returned. That, in turn, means that:
+    //  a) if you are not careful you can create a "recursive" hook call, which, when applied well
+    //     with promises, will give you an async infinite loop (apply this hook in `get` to discover)
+    //  b) most importantly - "code" is scrubbed from the returned data structure.
+    //
+    // So to obtain our actual dain' data we need to query Mongoose _directly_ and operate _on that_.
+    const model = hook.app.service('games').Model
+    model.findOne({_id: hook.id}).then((game) => {
         const { players,turn,guesses,code } = game;
-        const playerIds = players.map((p) => (p.userId.toString()));
+        const playerIds = players.map((p) => p._id.toString());
         const joined = playerIds.includes(user._id.toString());
         const turnState = (turn % 2) ;
         const hasTurn = playerIds.indexOf(user._id)  === turnState;
@@ -82,6 +91,6 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
         hook.data.loss = true;
 
         return Promise.resolve(hook);
-      });
+    });
   };
 };
