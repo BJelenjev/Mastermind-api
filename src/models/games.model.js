@@ -20,7 +20,7 @@ module.exports = function (app) {
     colors: { type: [String], required: true}, // CSS-compatible color names or hex colors prefixed with '#'
     players: [playerSchema],
     guesses: [guessSchema],
-    turn: { type: Number, default: 1 },
+    turn: { type: Number, default: 0 },
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },
     ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
