@@ -5,7 +5,7 @@ const memory = require('feathers-memory');
 const feathersHooks = require('feathers-hooks');
 
 const storeInit = {
-  '0': { players: [{ userId: 'cde456'}], id: 0 }
+  '0': { game:players: [{ userId: 'cde456'}], id: 0 }
 };
 
 let store;
@@ -25,17 +25,17 @@ function games () {
 }
 
 
-describe('\'joinGame\' hook', () => {
+
   let app;
   let games;
 
-  beforeEach(() => {
+
     app = feathers()
       .configure(feathersHooks())
       .configure(services);
 
     games = app.service('games');
-  });
+
 
   const mock = {
     params: {
@@ -45,10 +45,10 @@ describe('\'joinGame\' hook', () => {
       join: true
 
     },
-    id: store[0]
+    id: games[0]
 
   };
-
+  describe('\'joinGame\' hook', () => {
   // Initialize our hook with no options
   const hook = joinGame();
 
