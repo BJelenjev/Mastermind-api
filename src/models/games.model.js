@@ -6,11 +6,11 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
 
-  const playersSchema = new Schema({
-    userId: { type: Schema.Types.ObjectId, ref: 'users' },
+  const playerSchema = new Schema({
+    _id: { type: Schema.Types.ObjectId, ref: 'users' },
   });
 
-  const guessesSchema = new Schema({
+  const guessSchema = new Schema({
     guess: { type: [Number], required: true},
     clue: { type: [Number], required: true},
   });
@@ -18,8 +18,8 @@ module.exports = function (app) {
   const games = new Schema({
     code: { type: [Number], required: true},
     colors: { type: [String], required: true}, // CSS-compatible color names or hex colors prefixed with '#'
-    players: [playersSchema],
-    guesses: [guessesSchema],
+    players: [playerSchema],
+    guesses: [guessSchema],
     turn: { type: Number, default: 1 },
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },

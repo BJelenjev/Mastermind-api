@@ -1,6 +1,5 @@
 // Recursively remove the "code" property from the given object or Array of objects
 const concealGameCode = (data) => {
-  console.log("Data in conceal: ", data)
   if(data.map) { // If the data is an array
     return data.map(concealGameCode)
   } else {
