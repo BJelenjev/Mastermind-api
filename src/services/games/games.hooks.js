@@ -27,13 +27,13 @@ const checkGuess = require('../../hooks/check-guess');
 
 module.exports = {
   before: {
-    all: [...restrict],
+    all: [],
     find: [],
     get: [],
     create: [ createGame()],
     update: [joinGame(), checkGuess()],
     patch: [joinGame(), checkGuess()],
-    remove: []
+    remove: [...restrict]
   },
 
   after: {
