@@ -7,7 +7,6 @@ const restrict = [
   restrictToAuthenticated(),
 ];
 
-
 const ownerSchema = {
   include: {
     service: 'users',
@@ -24,20 +23,21 @@ const joinGame = require('../../hooks/join-game');
 const statusGame = require('../../hooks/status-game');
 
 const checkGuess = require('../../hooks/check-guess');
+const concealCode = require('../../hooks/conceal-code');
 
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [ createGame()],
-    update: [joinGame(), checkGuess()],
-    patch: [joinGame(), checkGuess()],
-    remove: [...restrict]
+    create: [ ...restrict, createGame()],
+    update: [ ...restrict, joinGame(), checkGuess()],
+    patch:  [ ...restrict, joinGame(), checkGuess()],
+    remove: [ ...restrict]
   },
 
   after: {
-    all: [populate({ schema: ownerSchema }), statusGame()],
+    all: [populate({ schema: ownerSchema }), statusGame(), concealCode],
     find: [],
     get: [],
     create: [],

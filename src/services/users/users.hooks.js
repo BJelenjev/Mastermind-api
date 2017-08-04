@@ -11,12 +11,14 @@ const restrict = [
   })
 ];
 
+const userName = require('../../hooks/user-name');
+
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ ...restrict ],
-    create: [ hashPassword() ],
+    create: [ hashPassword(),userName() ],
     update: [ ...restrict, hashPassword() ],
     patch: [ ...restrict, hashPassword() ],
     remove: [ ...restrict ]

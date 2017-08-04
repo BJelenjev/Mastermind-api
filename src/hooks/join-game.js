@@ -10,28 +10,28 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     if (hook.data.join === undefined) return Promise.resolve(hook);
 
     const { user } = hook.params;
+    const currentUserId = user._id.toString();
 
     // see if player already present
-    return hook.app.service('games').get(hook.id)
+    return hook.app.service('games')
+      .get(hook.id)
       .then((game) => {
-        const { players } = game;
+
+        const {players} = game;
         const wantsToJoin = hook.data.join;
-        const joined = players.map((p) => (p.userId)).includes(user._id);
+        const alreadyJoined = players.map((p) => (p._id.toString())).includes(currentUserId);
 
         hook.data = {};
 
-        if (!joined && wantsToJoin) {
+        if (!alreadyJoined && wantsToJoin) {
+          //console.log(`Will add ${currentUserId} to game ${game._id}`)
           hook.data = {
-            players: players.concat({ userId: user._id})
+            players: players.concat({ _id: user._id})
           };
+        } else {
+          //console.log(`${currentUserId} already in game ${game._id}`)
+          hook.data = {};
         }
-
-        if (joined && !wantsToJoin) {
-          hook.data = {
-            players: players.filter((p) => (p.userId !== user._id))
-          };
-        }
-
         return Promise.resolve(hook);
       });
   };
