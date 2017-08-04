@@ -11,7 +11,7 @@ const ownerSchema = {
   include: {
     service: 'users',
     nameAs: 'owner',
-    parentField: 'userId',
+    parentField: 'ownerId',
     childField: '_id',
   }
 };
