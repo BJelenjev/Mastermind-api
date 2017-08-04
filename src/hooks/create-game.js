@@ -1,7 +1,6 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
 
-//this function could be better
 function select(array) {
   const codeLength = 4;
   const code =[];
@@ -9,7 +8,7 @@ function select(array) {
   while (counter > 0) {
     var element = 0;
     element = (Math.floor(Math.random()*array.length));
-    if (code.indexOf(element+1)<0)
+    if (!code.includes(element+1))
       code.push(array[element]),
       counter--;
   }
