@@ -48,7 +48,7 @@ module.exports = function checkGuess(hook) {
 
     const turnLoss = (turn + 1) > 10; // Do not accept game-altering data via hooks
     if (turnLoss) {
-      hook.data.gamePhase = "computerWon"
+      hook.data.gamePhase = 'computerWon';
       return hook;
     }
 
@@ -87,7 +87,7 @@ module.exports = function checkGuess(hook) {
 
     //is the result all correct then won gets to be true, and winnerId gets set
     if (numExact === code.length){
-      hook.data.gamePhase = "playerWon"
+      hook.data.gamePhase = 'playerWon';
       hook.data.winnerId = userId;
     }
 
