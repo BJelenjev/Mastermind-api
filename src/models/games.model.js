@@ -11,8 +11,9 @@ module.exports = function (app) {
   });
 
   const guessSchema = new Schema({
-    guess: { type: [Number], required: true},
-    clue: { type: [Number], required: true},
+    combination: {type: [Number], required: true},
+    numExact:    {type: Number, required: true},
+    numApprox:   {type: Number, required: true},
   });
 
   const games = new Schema({

@@ -17,11 +17,7 @@ const ownerSchema = {
 };
 
 const createGame = require('../../hooks/create-game');
-
 const joinGame = require('../../hooks/join-game');
-
-const statusGame = require('../../hooks/status-game');
-
 const checkGuess = require('../../hooks/check-guess');
 const concealCode = require('../../hooks/conceal-code');
 
@@ -31,13 +27,13 @@ module.exports = {
     find: [],
     get: [],
     create: [ ...restrict, createGame()],
-    update: [ ...restrict, joinGame(), checkGuess()],
-    patch:  [ ...restrict, joinGame(), checkGuess()],
+    update: [ ...restrict, joinGame(), checkGuess],
+    patch:  [ ...restrict, joinGame(), checkGuess],
     remove: [ ...restrict]
   },
 
   after: {
-    all: [populate({ schema: ownerSchema }), statusGame(), concealCode],
+    all: [populate({ schema: ownerSchema }), concealCode],
     find: [],
     get: [],
     create: [],
