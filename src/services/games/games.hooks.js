@@ -1,5 +1,5 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const { restrictToAuthenticated } = require('feathers-authentication-hooks');
+const { restrictToAuthenticated} = require('feathers-authentication-hooks');
 const { populate } = require('feathers-hooks-common');
 
 const restrict = [
