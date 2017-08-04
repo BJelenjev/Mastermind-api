@@ -76,10 +76,10 @@ module.exports = function checkGuess(hook) {
 
 
     //take the hook data and generate its clue
-    const guess = hook.data.guess;
-    const numExact = spotOnGuess(guess,code);
-    const numApprox = closeGuess(guess,code);
-    const newGuess = {guess, numExact, numApprox};
+    const combination = hook.data.guess;
+    const numExact = spotOnGuess(combination, code);
+    const numApprox = closeGuess(combination, code);
+    const newGuess = {combination, numExact, numApprox};
     const newGuesses = guesses.concat(newGuess);
 
     //guess get's added to list with result
