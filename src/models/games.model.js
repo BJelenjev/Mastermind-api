@@ -14,6 +14,7 @@ module.exports = function (app) {
     combination: {type: [Number], required: true},
     numExact:    {type: Number, required: true},
     numApprox:   {type: Number, required: true},
+    _playerId:   {type: Schema.Types.ObjectId, ref: 'users'},
   });
 
   const GAME_STATES = ['inProgress', 'computerWon', 'playerWon']
