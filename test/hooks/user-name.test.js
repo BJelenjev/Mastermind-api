@@ -1,17 +1,23 @@
-const assert = require('assert');
+const { expect } = require('chai');
 const userName = require('../../src/hooks/user-name');
 
-describe('\'user-name\' hook', () => {
-  it('runs the hook', () => {
-    // A mock hook object
-    const mock = {};
-    // Initialize our hook with no options
-    const hook = userName();
+describe('\'userName\' hook', () => {
+  // A mock hook object
+  const mock = {
+    data:{
+      user:{
+        email: 'firstname@domain.com',
+      }
+    }
+  };
+  // Initialize our hook with no options
+  const hook = userName();
 
-    // Run the hook function (which returns a promise)
-    // and compare the resulting hook object
+  it('adds the user part of the e-mail as name of the user'), () =>{
     return hook(mock).then(result => {
-      assert.equal(result, mock, 'Returns the expected hook object');
+      expect(result.data.user.email).to.eq('firstname');
     });
-  });
+
+  };
+
 });
