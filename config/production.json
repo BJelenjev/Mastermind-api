@@ -1,4 +1,5 @@
 {
-  "host": "mastermind-api-app.feathersjs.com",
-  "port": "PORT"
+  "host": "mindmasterapi.herokuapp.com",
+  "port": "PORT",
+  "mongodb": "mongolab-opaque-30101"
 }

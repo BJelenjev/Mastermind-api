@@ -19,9 +19,9 @@
       "header": {
         "type": "access"
       },
-      "audience": "https://yourdomain.com",
+      "audience": "https://mindmasterapi.herokuapp.com",
       "subject": "anonymous",
-      "issuer": "feathers",
+      "issuer": "mindmasterapi",
       "algorithm": "HS256",
       "expiresIn": "1d"
     },
