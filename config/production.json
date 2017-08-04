@@ -1,5 +1,5 @@
 {
   "host": "mindmasterapi.herokuapp.com",
   "port": "PORT",
-  "mongodb": "mongolab-opaque-30101"
+  "mongodb": "MONGODB_URI"
 }
