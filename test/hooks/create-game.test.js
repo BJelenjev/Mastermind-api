@@ -14,11 +14,11 @@ describe('\'createGame\' hook', () => {
   // Initialize our hook with no options
   const hook = createGame();
 
-  it('assigns the current user', () => {
+  it('assigns the current user as owner', () => {
     // Run the hook function (which returns a promise)
     // and compare the resulting hook object
     return hook(mock).then(result => {
-      expect(result.data.userId).to.eq(mock.params.user._id);
+      expect(result.data.ownerId).to.eq(mock.params.user._id);
     });
   });
 
@@ -35,7 +35,7 @@ describe('\'createGame\' hook', () => {
     // and compare the resulting hook object
     return hook(mock).then(result => {
       expect(result.data.players.length).to.eq(1);
-      expect(result.data.players[0].userId).to.eq('abc123');
+      expect(result.data.players[0]._id).to.eq('abc123');
     });
   });
 
