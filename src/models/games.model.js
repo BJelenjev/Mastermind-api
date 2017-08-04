@@ -11,8 +11,9 @@ module.exports = function (app) {
   });
 
   const guessSchema = new Schema({
-    guess: { type: [Number], required: true},
-    clue: { type: [Number], required: true},
+    combination: {type: [Number], required: true},
+    numExact:    {type: Number, required: true},
+    numApprox:   {type: Number, required: true},
   });
 
   const games = new Schema({
@@ -20,7 +21,7 @@ module.exports = function (app) {
     colors: { type: [String], required: true}, // CSS-compatible color names or hex colors prefixed with '#'
     players: [playerSchema],
     guesses: [guessSchema],
-    turn: { type: Number, default: 1 },
+    turn: { type: Number, default: 0 },
     started: { type: Boolean, default: false },
     winnerId: { type: Schema.Types.ObjectId, ref: 'users' },
     ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
