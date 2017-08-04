@@ -6,10 +6,9 @@ function select(array) {
   const code =[];
   let counter = codeLength;
   while (counter > 0) {
-    var element = 0;
-    element = (Math.floor(Math.random()*array.length));
-    if (!code.includes(element+1))
-      code.push(array[element]),
+    const element = array[(Math.floor(Math.random()*array.length))];
+    if (!code.includes(element))
+      code.push(element),
       counter--;
   }
   return code;
